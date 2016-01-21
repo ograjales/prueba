@@ -1,0 +1,24 @@
+<?php
+function obtenerPtomarcacion($ruta){
+    $con = new mysqli("localhost","rondas_root","Prona0129**","rondas");
+    $sql = " SELECT id,ruta,serial_tag,longitud,lat,checkhora,tiempo_sig_punto,tiempo_tolerancia,fechacreacion,est FROM ruta_punto where ruta='$ruta' and est=1";
+    $stmt = $con->prepare($sql);
+    $stmt->execute();
+    $stmt->bind_result($col1,$col2,$col3,$col4,$col5,$col6,$col7,$col8,$col9,$col10);
+     while ($stmt->fetch()) {
+    $row[0] = $col1;
+    $row[1] = $col2;
+	$row[2] = $col3;
+	$row[3] = $col4;
+	$row[4] = $col5;
+	$row[5] = $col6;
+	$row[6] = $col7;
+	$row[7] = $col8;
+	$row[8] = $col9;
+	$row[9] = $col10;
+	$rows[$i]=$row;
+  $i=$i+1; }
+   
+ return $rows;
+}
+?>
